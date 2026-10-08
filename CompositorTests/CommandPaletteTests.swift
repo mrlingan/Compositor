@@ -53,7 +53,13 @@ struct CommandPaletteTests {
 
     /// Against the app's own SwiftUI menu bar, not a hand-built one: its commands are listed, disabled ones greyed
     /// (SwiftUI takes their action away), and running one runs its SwiftUI action.
-    @Test func realMenuBarRunsItsCommands() async throws {
+    ///
+    /// The titles below are the English ones, so this runs where the app is in English: CI, and any English system.
+    /// On a system in another language the app the test host builds is localized, so the menu bar carries translated
+    /// titles that these literals can't name. `LocalizationTests` guards that build instead.
+    @Test(.enabled(if: Bundle.main.preferredLocalizations.first == "en",
+                   "the menu bar carries translated titles when the app isn't running in English"))
+    func realMenuBarRunsItsCommands() async throws {
         let bar = try #require(NSApp.mainMenu)
         func entries() -> [CommandPaletteEntry] { CommandPaletteMenu.entries(in: bar, skipping: CommandPaletteController.skipped) }
         func gridState() -> NSControl.StateValue? {
