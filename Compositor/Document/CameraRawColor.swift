@@ -1,12 +1,69 @@
 import AppKit
 
 nonisolated enum CameraRawCurvePage: String, CaseIterable, Sendable { case parametric = "Parametric", point = "Point" }
+extension CameraRawCurvePage {
+    /// Camera Raw's curve panel tabs.
+    var title: LocalizedStringResource {
+        switch self {
+        case .parametric: "Parametric"
+        case .point: "Point"
+        }
+    }
+}
+
 nonisolated enum CameraRawPointChannel: String, CaseIterable, Sendable { case rgb = "RGB", red = "Red", green = "Green", blue = "Blue" }
+extension CameraRawPointChannel {
+    /// The channel a point curve edits.
+    var title: LocalizedStringResource {
+        switch self {
+        case .rgb: "RGB"
+        case .red: "Red"
+        case .green: "Green"
+        case .blue: "Blue"
+        }
+    }
+}
+
 nonisolated enum CameraRawMixerPage: String, CaseIterable, Sendable { case hsl = "HSL", color = "Color", point = "Point Color" }
+extension CameraRawMixerPage {
+    /// Camera Raw's color mixer tabs.
+    var title: LocalizedStringResource {
+        switch self {
+        case .hsl: "HSL"
+        case .color: "Color"
+        case .point: "Point Color"
+        }
+    }
+}
+
 nonisolated enum CameraRawMixerTab: String, CaseIterable, Sendable { case hue = "Hue", saturation = "Saturation", luminance = "Luminance" }
+extension CameraRawMixerTab {
+    /// The attribute the color mixer edits.
+    var title: LocalizedStringResource {
+        switch self {
+        case .hue: "Hue"
+        case .saturation: "Saturation"
+        case .luminance: "Luminance"
+        }
+    }
+}
+
 nonisolated enum CameraRawGradePage: String, CaseIterable, Sendable {
     case threeWay = "Three-Way", shadows = "Shadows", midtones = "Midtones", highlights = "Highlights", global = "Global"
 }
+extension CameraRawGradePage {
+    /// Camera Raw's color grading pages.
+    var title: LocalizedStringResource {
+        switch self {
+        case .threeWay: "Three-Way"
+        case .shadows: "Shadows"
+        case .midtones: "Midtones"
+        case .highlights: "Highlights"
+        case .global: "Global"
+        }
+    }
+}
+
 
 struct CameraRawDrag {
     var startY: CGFloat

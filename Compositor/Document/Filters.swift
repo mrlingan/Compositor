@@ -30,12 +30,51 @@ nonisolated enum FilterKind: String, CaseIterable, Sendable {
     }
 }
 
+extension FilterKind {
+    /// Every filter and image adjustment, named as Photoshop names it.
+    var title: LocalizedStringResource {
+        switch self {
+        case .gaussianBlur: "Gaussian Blur"
+        case .motionBlur: "Motion Blur"
+        case .addNoise: "Add Noise"
+        case .vignette: "Vignette"
+        case .bloomGlow: "Bloom / Glow"
+        case .dither: "Dither"
+        case .tonalContrast: "Tonal Contrast"
+        case .lensCorrection: "Lens Correction"
+        case .cameraRaw: "Camera Raw Filter"
+        case .removeBackground: "Remove Background"
+        case .contentAwareFill: "Content-Aware Fill"
+        case .curves: "Curves"
+        case .exposure: "Exposure"
+        case .gradientMap: "Gradient Map"
+        case .grain: "Grain"
+        case .blackWhite: "Black & White"
+        case .colorBalance: "Color Balance"
+        }
+    }
+}
+extension FilterKind {
+    /// The menu item that opens this one, with the ellipsis the menu shows.
+    var menuTitle: String { String(localized: title) + "…" }
+}
+
 /// Remove Background's two ways of working: Apple's own subject mask on its own, or that mask refined against the
 /// layer's detail, which recovers hair and fur but takes longer.
 nonisolated enum BackgroundQuality: String, CaseIterable, Sendable {
     case basic = "Basic"
     case advanced = "Advanced"
 }
+extension BackgroundQuality {
+    /// How much work Remove Background does.
+    var title: LocalizedStringResource {
+        switch self {
+        case .basic: "Basic"
+        case .advanced: "Advanced"
+        }
+    }
+}
+
 
 /// Every filter's settings; each filter reads only its own.
 nonisolated struct FilterSettings: Equatable, Sendable {

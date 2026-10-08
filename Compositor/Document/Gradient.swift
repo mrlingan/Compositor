@@ -4,12 +4,32 @@ nonisolated enum GradientStyle: String, CaseIterable, Sendable {
     case foregroundToBackground = "Foreground to Background"
     case foregroundToTransparent = "Foreground to Transparent"
 }
+extension GradientStyle {
+    /// What a gradient runs between.
+    var title: LocalizedStringResource {
+        switch self {
+        case .foregroundToBackground: "Foreground to Background"
+        case .foregroundToTransparent: "Foreground to Transparent"
+        }
+    }
+}
+
 
 /// Linear runs from start to end; radial is centered on the start with the end on its rim.
 nonisolated enum GradientShape: String, CaseIterable, Sendable {
     case linear = "Linear"
     case radial = "Radial"
 }
+extension GradientShape {
+    /// The shape a gradient is drawn along.
+    var title: LocalizedStringResource {
+        switch self {
+        case .linear: "Linear"
+        case .radial: "Radial"
+        }
+    }
+}
+
 
 nonisolated struct GradientSettings: Equatable, Sendable {
     var shape = GradientShape.linear

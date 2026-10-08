@@ -4,6 +4,18 @@ import CoreGraphics
 nonisolated enum CanvasUnit: String, CaseIterable, Sendable {
     case pixels = "Pixels", percent = "Percent", inches = "Inches", centimeters = "Centimeters"
 }
+extension CanvasUnit {
+    /// The unit the Canvas Size dialog is measured in.
+    var title: LocalizedStringResource {
+        switch self {
+        case .pixels: "Pixels"
+        case .percent: "Percent"
+        case .inches: "Inches"
+        case .centimeters: "Centimeters"
+        }
+    }
+}
+
 
 nonisolated struct CanvasSizeDraft {
     let originalWidth: Int

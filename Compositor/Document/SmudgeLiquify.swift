@@ -6,12 +6,33 @@ nonisolated enum BrushToolMode: String, CaseIterable, Sendable {
     case paint = "Paint"
     case erase = "Erase"
 }
+extension BrushToolMode {
+    /// Whether the brush paints or erases.
+    var title: LocalizedStringResource {
+        switch self {
+        case .paint: "Paint"
+        case .erase: "Erase"
+        }
+    }
+}
+
 
 nonisolated enum BlurToolMode: String, CaseIterable, Sendable {
     case liquify = "Liquify"
     case blur = "Blur"
     case smudge = "Smudge"
 }
+extension BlurToolMode {
+    /// The retouching tool's three modes.
+    var title: LocalizedStringResource {
+        switch self {
+        case .liquify: "Liquify"
+        case .blur: "Blur"
+        case .smudge: "Smudge"
+        }
+    }
+}
+
 
 /// A Smudge or Liquify stroke in progress. It works on the active layer as the canvas shows it, at document size,
 /// changing it dab by dab; the canvas shows that working copy in place of the layer. When the stroke ends, the result

@@ -1,6 +1,17 @@
 import AppKit
 
 nonisolated enum LevelsSample: String, CaseIterable { case black = "Black", gray = "Gray", white = "White" }
+extension LevelsSample {
+    /// Which of the three eyedroppers the Levels panel is using.
+    var title: LocalizedStringResource {
+        switch self {
+        case .black: "Black"
+        case .gray: "Gray"
+        case .white: "White"
+        }
+    }
+}
+
 nonisolated enum LevelsAuto: String, CaseIterable {
     case contrast = "Contrast", color = "Color", neutral = "Color + neutral midtones"
     func settings(histogram: [[Double]]) -> LevelsSettings {
@@ -35,6 +46,17 @@ nonisolated enum LevelsAuto: String, CaseIterable {
         return result
     }
 }
+extension LevelsAuto {
+    /// What the Levels panel's Auto button optimizes for.
+    var title: LocalizedStringResource {
+        switch self {
+        case .contrast: "Contrast"
+        case .color: "Color"
+        case .neutral: "Color + neutral midtones"
+        }
+    }
+}
+
 
 extension LevelsSettings {
     /// Samples are unpremultiplied original RGB. All three channels are calibrated together.

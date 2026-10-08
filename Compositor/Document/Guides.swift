@@ -118,6 +118,35 @@ struct GridAppearance: Equatable {
     /// Subdivisions at a little over half the majors' opacity: 28% beside the default 45%.
     var subdivisionAlpha: CGFloat { majorAlpha * 28 / 45 }
 }
+extension GridAppearance.Preset {
+    /// The guide and grid presets.
+    var title: LocalizedStringResource {
+        switch self {
+        case .lightGray: "Light Gray"
+        case .lightBlue: "Light Blue"
+        case .lightRed: "Light Red"
+        case .green: "Green"
+        case .mediumBlue: "Medium Blue"
+        case .yellow: "Yellow"
+        case .magenta: "Magenta"
+        case .cyan: "Cyan"
+        case .black: "Black"
+        case .custom: "Custom"
+        }
+    }
+}
+
+extension GridAppearance.Style {
+    /// How guides and grids are drawn.
+    var title: LocalizedStringResource {
+        switch self {
+        case .lines: "Lines"
+        case .dashedLines: "Dashed Lines"
+        case .dots: "Dots"
+        }
+    }
+}
+
 
 /// In-progress create or move; the document is updated only when the drag finishes.
 struct GuideDrag: Equatable {

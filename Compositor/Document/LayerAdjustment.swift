@@ -42,6 +42,30 @@ nonisolated enum AdjustmentKind: String, Codable, CaseIterable, Sendable {
         }
     }
 }
+extension AdjustmentKind {
+    /// The adjustment's own name, without the menu's ellipsis: the layer row and its icon use this.
+    var title: LocalizedStringResource {
+        switch self {
+        case .hsv: "Hue/Saturation"
+        case .levels: "Levels"
+        case .curves: "Curves"
+        case .exposure: "Exposure"
+        case .gradientMap: "Gradient Map"
+        case .grain: "Grain"
+        case .addNoise: "Add Noise"
+        case .gaussianBlur: "Gaussian Blur"
+        case .motionBlur: "Motion Blur"
+        case .invert: "Invert"
+        case .blackWhite: "Black & White"
+        case .colorBalance: "Color Balance"
+        }
+    }
+}
+extension AdjustmentKind {
+    /// The menu item that opens this one. Invert is the one adjustment with nothing to open.
+    var menuTitle: String { self == .invert ? String(localized: title) : String(localized: title) + "…" }
+}
+
 nonisolated struct LayerAdjustment: Codable, Equatable, Sendable {
     var kind: AdjustmentKind
     var hue: Double = 0

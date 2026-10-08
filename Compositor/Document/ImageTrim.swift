@@ -8,6 +8,17 @@ public enum TrimBasedOn: String, CaseIterable, Identifiable, Sendable {
 
     public var id: String { rawValue }
 }
+extension TrimBasedOn {
+    /// What the Trim command crops away.
+    var title: LocalizedStringResource {
+        switch self {
+        case .transparentPixels: "Transparent Pixels"
+        case .topLeftPixelColor: "Top Left Pixel Color"
+        case .bottomRightPixelColor: "Bottom Right Pixel Color"
+        }
+    }
+}
+
 
 nonisolated public struct TrimOptions: Sendable, Equatable {
     public var basedOn: TrimBasedOn

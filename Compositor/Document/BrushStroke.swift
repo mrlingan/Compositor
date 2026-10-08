@@ -5,6 +5,17 @@ nonisolated enum SpotHealingMode: String, CaseIterable, Sendable, Hashable {
     case createTexture = "Create Texture"
     case proximityMatch = "Proximity Match"
 }
+extension SpotHealingMode {
+    /// How the Spot Healing Brush fills a spot.
+    var title: LocalizedStringResource {
+        switch self {
+        case .contentAware: "Content-Aware"
+        case .createTexture: "Create Texture"
+        case .proximityMatch: "Proximity Match"
+        }
+    }
+}
+
 
 nonisolated struct BrushSettings: Sendable {
     var diameter: CGFloat = 40

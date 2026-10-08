@@ -151,6 +151,17 @@ nonisolated enum HueSampleMode: String, CaseIterable, Sendable {
         }
     }
 }
+extension HueSampleMode {
+    /// Whether the Hue/Saturation panel samples one hue or a range.
+    var title: LocalizedStringResource {
+        switch self {
+        case .replace: "Sample"
+        case .add: "Add"
+        case .remove: "Remove"
+        }
+    }
+}
+
 
 /// A targeted-adjustment drag in progress.
 struct HueTargetDrag {

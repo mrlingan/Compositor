@@ -5,11 +5,31 @@ nonisolated enum CameraRawUprightMode: String, CaseIterable, Sendable {
     case off = "Off"
     case guided = "Guided"
 }
+extension CameraRawUprightMode {
+    /// Camera Raw's Upright picker: leaves the picture as it is, or straightens from drawn lines.
+    var title: LocalizedStringResource {
+        switch self {
+        case .off: "Off"
+        case .guided: "Guided"
+        }
+    }
+}
+
 
 nonisolated enum CameraRawProjection: String, CaseIterable, Sendable {
     case perspective = "Perspective"
     case rectilinear = "Rectilinear"
 }
+extension CameraRawProjection {
+    /// Camera Raw's Projection picker, which chooses how the warp is projected.
+    var title: LocalizedStringResource {
+        switch self {
+        case .perspective: "Perspective"
+        case .rectilinear: "Rectilinear"
+        }
+    }
+}
+
 
 /// A guide line in normalized image coordinates, 0…1 from the lower-left of the pixel grid.
 nonisolated struct CameraRawGeometryGuide: Equatable, Sendable, Codable {
@@ -208,6 +228,20 @@ nonisolated enum CameraRawProcessVersion: String, CaseIterable, Sendable {
         }
     }
 }
+extension CameraRawProcessVersion {
+    /// Camera Raw's process version picker, naming the camera raw pipeline version.
+    var title: LocalizedStringResource {
+        switch self {
+        case .version1: "Version 1"
+        case .version2: "Version 2"
+        case .version3: "Version 3"
+        case .version4: "Version 4"
+        case .version5: "Version 5"
+        case .version6: "Version 6"
+        }
+    }
+}
+
 
 nonisolated struct CameraRawCalibrationSettings: Equatable, Sendable {
     var process: CameraRawProcessVersion = .version6

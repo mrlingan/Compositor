@@ -40,6 +40,18 @@ nonisolated enum NewCanvasUnit: String, CaseIterable, Sendable {
             .locale(Locale(identifier: "en_US_POSIX")))
     }
 }
+extension NewCanvasUnit {
+    /// The unit a new canvas is measured in.
+    var title: LocalizedStringResource {
+        switch self {
+        case .pixels: "px"
+        case .inches: "in"
+        case .centimeters: "cm"
+        case .millimeters: "mm"
+        }
+    }
+}
+
 
 /// What a new canvas starts as: see-through, or a Background layer of white or black.
 nonisolated enum NewCanvasBackground: String, CaseIterable, Sendable {

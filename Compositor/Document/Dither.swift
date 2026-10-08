@@ -33,6 +33,25 @@ nonisolated enum DitherStyle: String, CaseIterable, Sendable {
     /// ASCII's characters and a CRT's lines are drawn at full resolution, not in chunky pixels.
     var usesPixelSize: Bool { self != .ascii && self != .scanlines }
 }
+extension DitherStyle {
+    /// The dithering patterns offered by the Dither filter.
+    var title: LocalizedStringResource {
+        switch self {
+        case .atkinson: "Atkinson (Classic Mac)"
+        case .floydSteinberg: "Floyd–Steinberg"
+        case .bayer2: "Bayer 2 × 2"
+        case .bayer4: "Bayer 4 × 4"
+        case .bayer8: "Bayer 8 × 8"
+        case .dots: "Halftone Dots"
+        case .lines: "Halftone Lines"
+        case .diamonds: "Halftone Diamonds"
+        case .patterns: "Mac Patterns"
+        case .ascii: "ASCII"
+        case .scanlines: "Scanlines (CRT)"
+        }
+    }
+}
+
 
 /// How a chunky pixel is drawn: a solid square, or a round dot with the dark color showing around it, like the lit
 /// pixels of a dot-matrix or LED screen.
@@ -40,12 +59,33 @@ nonisolated enum DitherPixelShape: String, CaseIterable, Sendable {
     case square = "Square"
     case dot = "Dot"
 }
+extension DitherPixelShape {
+    /// How each dithered pixel is drawn.
+    var title: LocalizedStringResource {
+        switch self {
+        case .square: "Square"
+        case .dot: "Dot"
+        }
+    }
+}
+
 
 nonisolated enum DitherColors: String, CaseIterable, Sendable {
     case blackWhite = "Black & White"
     case twoColors = "Two Colors"
     case original = "Original"
 }
+extension DitherColors {
+    /// The palette a dithered image is drawn with.
+    var title: LocalizedStringResource {
+        switch self {
+        case .blackWhite: "Black & White"
+        case .twoColors: "Two Colors"
+        case .original: "Original"
+        }
+    }
+}
+
 
 nonisolated struct DitherSettings: Equatable, Sendable {
     static let pixelSizeRange: ClosedRange<Double> = 1...32

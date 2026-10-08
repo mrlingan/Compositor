@@ -213,6 +213,24 @@ nonisolated enum LayerEffectKind: String, CaseIterable, Sendable {
     case stroke = "Stroke", shadow = "Drop Shadow", colorOverlay = "Color Overlay", innerShadow = "Inner Shadow", outerGlow = "Outer Glow", innerGlow = "Inner Glow"
 }
 
+extension LayerEffectKind {
+    /// Every layer effect.
+    var title: LocalizedStringResource {
+        switch self {
+        case .stroke: "Stroke"
+        case .shadow: "Drop Shadow"
+        case .colorOverlay: "Color Overlay"
+        case .innerShadow: "Inner Shadow"
+        case .outerGlow: "Outer Glow"
+        case .innerGlow: "Inner Glow"
+        }
+    }
+}
+extension LayerEffectKind {
+    /// The menu item that opens this one, with the ellipsis the menu shows.
+    var menuTitle: String { String(localized: title) + "…" }
+}
+
 struct LayerEffectSelection: Equatable {
     let layerID: UUID
     let kind: LayerEffectKind

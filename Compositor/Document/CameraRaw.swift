@@ -6,6 +6,16 @@ nonisolated enum CameraRawWhiteBalance: String, CaseIterable, Sendable {
     case custom = "Custom"
     case auto = "Auto"
 }
+extension CameraRawWhiteBalance {
+    /// Whether the white balance is measured from the picture or set by hand.
+    var title: LocalizedStringResource {
+        switch self {
+        case .custom: "Custom"
+        case .auto: "Auto"
+        }
+    }
+}
+
 
 /// Glow's three looks. Warmth tints Diffusion and Bloom from cool to warm; Halation's fringe stays red.
 nonisolated enum CameraRawGlowStyle: String, CaseIterable, Sendable {
@@ -20,6 +30,17 @@ nonisolated enum CameraRawGlowStyle: String, CaseIterable, Sendable {
         }
     }
 }
+extension CameraRawGlowStyle {
+    /// How Camera Raw's glow spreads light from the highlights.
+    var title: LocalizedStringResource {
+        switch self {
+        case .diffusion: "Diffusion"
+        case .bloom: "Bloom"
+        case .halation: "Halation"
+        }
+    }
+}
+
 
 /// Post-crop vignette. Highlight Priority is the style whose Highlights slider protects bright pixels.
 nonisolated enum CameraRawVignetteStyle: String, CaseIterable, Sendable {
@@ -34,6 +55,17 @@ nonisolated enum CameraRawVignetteStyle: String, CaseIterable, Sendable {
         }
     }
 }
+extension CameraRawVignetteStyle {
+    /// How Camera Raw's vignette darkens the edges.
+    var title: LocalizedStringResource {
+        switch self {
+        case .highlightPriority: "Highlight Priority"
+        case .colorPriority: "Color Priority"
+        case .paintOverlay: "Paint Overlay"
+        }
+    }
+}
+
 
 /// Temporary clipping view while Option is held on a Light slider. Never written into the layer.
 nonisolated enum CameraRawClipping: Int32, Sendable {
@@ -328,6 +360,16 @@ nonisolated enum CameraRawScopeMode: String, Sendable {
     case histogram = "Histogram"
     case vectorscope = "Vectorscope"
 }
+extension CameraRawScopeMode {
+    /// Which graph the Camera Raw panel draws.
+    var title: LocalizedStringResource {
+        switch self {
+        case .histogram: "Histogram"
+        case .vectorscope: "Vectorscope"
+        }
+    }
+}
+
 
 /// One RGB histogram and a hue/saturation vectorscope of the same graded pixels.
 nonisolated struct CameraRawScope: Equatable, Sendable {

@@ -35,9 +35,14 @@ struct LocalizationTests {
         }
     }
 
+    /// Names that stay as they are in every language: the app's own name, and the industry abbreviations the app's
+    /// documentation already treats as fixed. A dithering pattern keeps `Bayer` and `ASCII`, and a channel picker
+    /// keeps `RGB` and `HSL`.
+    private static let untranslated = ["Compositor", "ASCII", "HSL", "RGB", "Bayer", "Floyd–Steinberg"]
+
     /// A key with actual words in it: symbols and format-only strings ("%lld × %lld px") carry nothing to translate.
     private static func hasWords(_ key: String) -> Bool {
-        key.filter(\.isLetter).count >= 2 && !key.contains("Compositor")
+        key.filter(\.isLetter).count >= 2 && !untranslated.contains(where: key.contains)
     }
 
     /// The app carries a Simplified Chinese table, so the rest of these tests are checking something real.

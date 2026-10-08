@@ -71,6 +71,16 @@ nonisolated enum WandMode: String, CaseIterable, Sendable {
     case wand = "Wand"
     case object = "Object"
 }
+extension WandMode {
+    /// The Magic tool's two modes.
+    var title: LocalizedStringResource {
+        switch self {
+        case .wand: "Wand"
+        case .object: "Object"
+        }
+    }
+}
+
 
 nonisolated enum LassoKind: String, CaseIterable, Sendable {
     case freehand = "Freehand"
@@ -81,12 +91,35 @@ nonisolated enum LassoKind: String, CaseIterable, Sendable {
     static let lassoChoices: [LassoKind] = [.freehand, .polygonal]
     static let marqueeChoices: [LassoKind] = [.rectangle, .ellipse]
 }
+extension LassoKind {
+    /// The Lasso's and Marquee's outlines.
+    var title: LocalizedStringResource {
+        switch self {
+        case .freehand: "Freehand"
+        case .polygonal: "Polygonal"
+        case .rectangle: "Rectangle"
+        case .ellipse: "Ellipse"
+        }
+    }
+}
+
 
 nonisolated enum SelectionMode: String, CaseIterable, Sendable {
     case replace = "New"
     case add = "Add"
     case subtract = "Subtract"
 }
+extension SelectionMode {
+    /// How a new selection combines with the existing one.
+    var title: LocalizedStringResource {
+        switch self {
+        case .replace: "New"
+        case .add: "Add"
+        case .subtract: "Subtract"
+        }
+    }
+}
+
 
 /// The box a drag from `anchor` to `point` spans, in whole pixels. `square` evens the sides;
 /// `fromCenter` grows the box around the anchor. Shared by the Marquee and the Shape tool.
@@ -361,3 +394,14 @@ extension EditorSession {
         setSelection(inverse.isEmpty ? nil : inverse, name: "Inverse")
     }
 }
+extension EditorSession.SelectionAmountOperation {
+    /// The three ways a selection can be resized.
+    var title: LocalizedStringResource {
+        switch self {
+        case .expand: "Expand"
+        case .contract: "Contract"
+        case .feather: "Feather"
+        }
+    }
+}
+
